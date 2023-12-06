@@ -6,13 +6,13 @@
 /*   By: resilva <resilva@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 19:06:06 by resilva           #+#    #+#             */
-/*   Updated: 2023/11/24 20:35:58 by resilva          ###   ########.fr       */
+/*   Updated: 2023/12/06 00:38:45 by resilva          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../../inc/push_swap.h"
 
-char	*get_next_subs(char *s, char c)
+static char	*get_next_subs(char *s, char c)
 {
 	static int	cursor = 0;
 	char		*next_subs;
@@ -34,7 +34,7 @@ char	*get_next_subs(char *s, char c)
 	return (next_subs);
 }
 
-int	count_subs(char *s, char c)
+static int	count_subs(char *s, char c)
 {
 	int		count;
 	bool	inside_subs;
@@ -79,11 +79,10 @@ char	**ft_split(char *s, char c)
 			if (!result[i])
 				return (NULL);
 			result[i++][0] = '\0';
-			i++;
 			continue ;
 		}
 		result[i++] = get_next_subs(s, c);
 	}
-	result[i] = '\0';
+	result[i] = NULL;
 	return (result);
 }

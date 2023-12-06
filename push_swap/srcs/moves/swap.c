@@ -1,51 +1,51 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   rotate.c                                           :+:      :+:    :+:   */
+/*   swap.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: resilva <resilva@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/29 01:24:59 by resilva           #+#    #+#             */
-/*   Updated: 2023/11/29 01:39:08 by resilva          ###   ########.fr       */
+/*   Created: 2023/11/29 01:03:21 by resilva           #+#    #+#             */
+/*   Updated: 2023/12/06 02:13:41 by resilva          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../../inc/push_swap.h"
 
-void	rotate(t_stack_node **stack)
+static void	swap(t_stack_node **stack)
 {
-	int				len;
-	t_stack_node	*last;
-	
+	int	len;
+
 	len = stack_len(*stack);
-	if (!(*stack) || !stack || len == 1)
+	if (NULL == *stack || NULL == stack || 1 == len)
 		return ;
-	last = find_last(*stack);
-	last->next = *stack;
 	*stack = (*stack)->next;
+	(*stack)->prev->prev = *stack;
+	(*stack)->prev->next = (*stack)->next;
+	if ((*stack)->next)
+		(*stack)->next->prev = (*stack)->prev;
+	(*stack)->next = (*stack)->prev;
 	(*stack)->prev = NULL;
-	last->next->prev = last;
-	last->next->next = NULL;
 }
 
-void	ra(t_stack_node **a, bool check)
+void	sa(t_stack_node **a, bool check)
 {
-	rotate(a);
+	swap(a);
 	if (!check)
-		write (1, "ra\n", 3);
+		write (1, "sa\n", 3);
 }
 
-void	rb(t_stack_node **b, bool check)
+void	sb(t_stack_node **b, bool check)
 {
-	rotate(b);
+	swap(b);
 	if (!check)
-		write (1, "rb\n", 3);
+		write (1, "sb\n", 3);
 }
 
-void	rr(t_stack_node **a, t_stack_node **b, bool	check)
+void	ss(t_stack_node **a, t_stack_node **b, bool check)
 {
-	rotate(a);
-	rotate(b);
+	swap(a);
+	swap(b);
 	if (!check)
-		write (1, "rr\n", 3);
+		write (1, "ss\n", 3);
 }

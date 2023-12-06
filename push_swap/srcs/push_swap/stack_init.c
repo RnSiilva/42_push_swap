@@ -6,13 +6,26 @@
 /*   By: resilva <resilva@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 20:38:07 by resilva           #+#    #+#             */
-/*   Updated: 2023/11/29 02:19:30 by resilva          ###   ########.fr       */
+/*   Updated: 2023/12/06 03:27:52 by resilva          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../../inc/push_swap.h"
 
-void	append_node(t_stack_node **stack, int n)
+bool	stack_sorted(t_stack_node *stack)
+{
+	if (!stack)
+		return (1);
+	while (stack->next)
+	{
+		if (stack->nbr > stack->next->nbr)
+			return (false);
+		stack = stack->next;
+	}
+	return (true);
+}
+
+static void	append_node(t_stack_node **stack, int n)
 {
 	t_stack_node	*last_node;
 	t_stack_node	*node;
@@ -37,7 +50,7 @@ void	append_node(t_stack_node **stack, int n)
 	}
 }
 
-long	ft_atol(char *str)
+static long	ft_atol(char *str)
 {
 	long	n;
 	int		sign;
@@ -63,7 +76,7 @@ void	init_stack_a(t_stack_node **a, char **av)
 {
 	long	n;
 	int		i;
-	
+
 	i = 0;
 	while (av[i])
 	{
@@ -72,7 +85,7 @@ void	init_stack_a(t_stack_node **a, char **av)
 		n = ft_atol(av[i]);
 		if (n > INT_MAX || n < INT_MIN)
 			free_errors(a);
-		if (error_duplicate(*a, av[i]))
+		if (error_duplicate(*a, (int)n))
 			free_errors(a);
 		append_node(a, (int)n);
 		i++;

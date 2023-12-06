@@ -6,13 +6,13 @@
 /*   By: resilva <resilva@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 01:48:25 by resilva           #+#    #+#             */
-/*   Updated: 2023/11/29 02:18:39 by resilva          ###   ########.fr       */
+/*   Updated: 2023/12/05 23:41:30 by resilva          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../../inc/push_swap.h"
 
-void	push(t_stack_node **dest, t_stack_node **src)
+static void	push(t_stack_node **dest, t_stack_node **src)
 {
 	t_stack_node	*node_push;
 
@@ -33,7 +33,7 @@ void	push(t_stack_node **dest, t_stack_node **src)
 		(*dest)->prev = node_push;
 		node_push->next = *dest;
 		*dest = node_push;
-	}	
+	}
 }
 
 void	pa(t_stack_node **a, t_stack_node **b, bool check)

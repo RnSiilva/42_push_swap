@@ -1,25 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: resilva <resilva@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 19:01:52 by resilva           #+#    #+#             */
-/*   Updated: 2023/11/28 21:30:30 by resilva          ###   ########.fr       */
+/*   Updated: 2023/12/06 01:18:09 by resilva          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../../inc/push_swap.h"
 
 int	main(int ac, char **av)
 {
 	t_stack_node	*a;
 	t_stack_node	*b;
-	
+
 	a = NULL;
 	b = NULL;
-	if (ac == 1 || ac == 2 && !av[1][0])
+	if (ac == 1 || (ac == 2 && !av[1][0]))
 		return (1);
 	else if (ac == 2)
 		av = ft_split(av[1], ' ');
@@ -34,5 +34,4 @@ int	main(int ac, char **av)
 			sort_stacks(&a, &b);
 	}
 	free_stack(&a);
-	return (0);
 }
