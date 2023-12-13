@@ -6,7 +6,7 @@
 /*   By: resilva <resilva@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 22:20:33 by resilva           #+#    #+#             */
-/*   Updated: 2023/12/10 02:42:16 by resilva          ###   ########.fr       */
+/*   Updated: 2023/12/13 03:11:47 by resilva          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,15 +58,14 @@ static void	move_b_to_a(t_stack_node **a, t_stack_node **b)
 {
 	t_stack_node	*cheapest_node;
 
-	cheapest_node = find_cheapest(*a);
-
+	cheapest_node = find_cheapest(*b);
 	if (cheapest_node->above_median && cheapest_node->target_node->above_median)
 		rotate_both(a, b, cheapest_node);
 	else if (!(cheapest_node->above_median)
 		&& !(cheapest_node->target_node->above_median))
 		rev_rotate_both(a, b, cheapest_node);
-	prep_for_push(a, cheapest_node, 'a');
-	prep_for_push(b, cheapest_node->target_node, 'b');
+	prep_for_push(b, cheapest_node, 'b');
+	prep_for_push(a, cheapest_node->target_node, 'a');
 	pa(a, b, false);
 }
 
@@ -101,10 +100,7 @@ static void	move_b_to_a(t_stack_node **a, t_stack_node **b)
 
 void	sort_stacks(t_stack_node **a, t_stack_node **b)
 {
-	int	len_a;
-
-	len_a = stack_len(*a);
-	push_to_b(b, a, len_a);
+	push_to_b(b, a);
 	sort_three(a);
 	while (*b)
 	{

@@ -6,7 +6,7 @@
 /*   By: resilva <resilva@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 18:51:45 by resilva           #+#    #+#             */
-/*   Updated: 2023/12/10 02:43:19 by resilva          ###   ########.fr       */
+/*   Updated: 2023/12/13 03:10:39 by resilva          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,6 @@ void			ss(t_stack_node **a, t_stack_node **b, bool check);
 // Algorithms
 void			sort_stacks(t_stack_node **a, t_stack_node **b);
 void			sort_three(t_stack_node **a);
-void			push_to_b(t_stack_node **b, t_stack_node **a, int len_a);
+void			push_to_b(t_stack_node **b, t_stack_node **a);
 
 #endif

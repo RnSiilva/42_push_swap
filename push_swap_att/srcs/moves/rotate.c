@@ -6,7 +6,7 @@
 /*   By: resilva <resilva@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 01:24:59 by resilva           #+#    #+#             */
-/*   Updated: 2023/12/05 23:41:55 by resilva          ###   ########.fr       */
+/*   Updated: 2023/12/13 01:40:50 by resilva          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void	rr(t_stack_node **a, t_stack_node **b, bool	check)
 void	rotate_both(t_stack_node **a, t_stack_node **b,
 					t_stack_node *cheapest_node)
 {
-	while (*b != cheapest_node->target_node && *a != cheapest_node)
+	while (*b != cheapest_node && *a != cheapest_node->target_node)
 		rr(a, b, false);
 	current_index(*a);
 	current_index(*b);

@@ -6,7 +6,7 @@
 /*   By: resilva <resilva@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/09 23:47:49 by resilva           #+#    #+#             */
-/*   Updated: 2023/12/10 02:48:25 by resilva          ###   ########.fr       */
+/*   Updated: 2023/12/13 03:33:23 by resilva          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static void	final_index(t_stack_node *a, int len_a)
 	t_stack_node	*temp;
 	int				temp_n;
 	
-	while (len_a--)
+	while (--len_a)
 	{
 		temp = a;
 		temp_n = INT_MIN;
@@ -31,7 +31,6 @@ static void	final_index(t_stack_node *a, int len_a)
 			{
 				temp_n = temp->nbr;
 				curr_index = temp;
-				temp = a;
 			}
 			else
 				temp = temp->next;
@@ -41,15 +40,17 @@ static void	final_index(t_stack_node *a, int len_a)
 	}
 }
 
-void	push_to_b(t_stack_node **b, t_stack_node **a, int len_a)
+void	push_to_b(t_stack_node **b, t_stack_node **a)
 {
+	int	len_a;
 	int	len_b;
 	int	i;
-
+	
+	len_a = stack_len(*a);
 	len_b = 0;
 	i = 0;
 	final_index(*a, len_a);
-	while (len_a > 6 && i < len_a && len_b < len_a / 2)
+	while (len_a > 5 && i < len_a && len_b < len_a / 2)
 	{
 		if ((*a)->final_index < len_a / 2)
 		{

@@ -6,7 +6,7 @@
 /*   By: resilva <resilva@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 20:38:07 by resilva           #+#    #+#             */
-/*   Updated: 2023/12/08 18:13:41 by resilva          ###   ########.fr       */
+/*   Updated: 2023/12/13 02:36:10 by resilva          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ static void	append_node(t_stack_node **stack, int n)
 		return ;
 	node->next = NULL;
 	node->nbr = n;
+	node->final_index = 0;
 	if (*stack == NULL)
 	{
 		*stack = node;

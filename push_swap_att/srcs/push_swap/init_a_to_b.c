@@ -6,7 +6,7 @@
 /*   By: resilva <resilva@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 01:31:53 by resilva           #+#    #+#             */
-/*   Updated: 2023/12/06 03:48:42 by resilva          ###   ########.fr       */
+/*   Updated: 2023/12/13 02:12:41 by resilva          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,43 +39,70 @@ static void	cost_analysis(t_stack_node *a, t_stack_node *b)
 
 	len_a = stack_len(a);
 	len_b = stack_len(b);
-	while (a)
+	while (b)
 	{
-		a->push_cost = a->index;
-		if (!(a->above_median))
-			a->push_cost = len_a - a->index;
-		if (a->target_node->above_median)
-			a->push_cost += a->target_node->index;
+		b->push_cost = b->index;
+		if (!(b->above_median))
+			b->push_cost = len_b - b->index;
+		if (b->target_node->above_median)
+			b->push_cost += b->target_node->index;
 		else
-			a->push_cost += len_b - a->target_node->index;
-		a = a->next;
+			b->push_cost += len_a - b->target_node->index;
+		b = b->next;
 	}
 }
 
-static void	set_target_a(t_stack_node *a, t_stack_node *b)
+// static void	set_target_a(t_stack_node *a, t_stack_node *b)
+// {
+// 	t_stack_node	*current_b;	
+// 	t_stack_node	*target_node;
+// 	long			best_match_index;
+
+// 	while (a)
+// 	{
+// 		best_match_index = LONG_MIN;
+// 		current_b = b;
+// 		while (current_b)
+// 		{
+// 			if (current_b->nbr < a->nbr && current_b->nbr > best_match_index)
+// 			{
+// 				best_match_index = current_b->nbr;
+// 				target_node = current_b;
+// 			}
+// 			current_b = current_b->next;
+// 		}
+// 		if (best_match_index == LONG_MIN)
+// 			a->target_node = find_max(b);
+// 		else
+// 			a->target_node = target_node;
+// 		a = a->next;
+// 	}
+// }
+
+static void	set_target_b(t_stack_node *a, t_stack_node *b)
 {
-	t_stack_node	*current_b;	
+	t_stack_node	*current_a;
 	t_stack_node	*target_node;
 	long			best_match_index;
 
-	while (a)
+	while (b)
 	{
-		best_match_index = LONG_MIN;
-		current_b = b;
-		while (current_b)
+		best_match_index = LONG_MAX;
+		current_a = a;
+		while (current_a)
 		{
-			if (current_b->nbr < a->nbr && current_b->nbr > best_match_index)
+			if (current_a->nbr > b->nbr && current_a->nbr < best_match_index)
 			{
-				best_match_index = current_b->nbr;
-				target_node = current_b;
+				best_match_index = current_a->nbr;
+				target_node = current_a;
 			}
-			current_b = current_b->next;
+			current_a = current_a->next;
 		}
-		if (best_match_index == LONG_MIN)
-			a->target_node = find_max(b);
+		if (best_match_index == LONG_MAX)
+			b->target_node = find_min(a);
 		else
-			a->target_node = target_node;
-		a = a->next;
+			b->target_node = target_node;
+		b = b->next;
 	}
 }
 
@@ -104,7 +131,7 @@ void	init_nodes_a(t_stack_node *a, t_stack_node *b)
 {
 	current_index(a);
 	current_index(b);
-	set_target_a(a, b);
+	set_target_b(a, b);
 	cost_analysis(a, b);
 	// set_cheapest(a);
 }
