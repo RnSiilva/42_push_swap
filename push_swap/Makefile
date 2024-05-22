@@ -6,7 +6,7 @@
 #    By: resilva <resilva@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/05 02:54:43 by resilva           #+#    #+#              #
-#    Updated: 2023/12/06 00:36:11 by resilva          ###   ########.fr        #
+#    Updated: 2023/12/13 23:28:50 by resilva          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ OBJ_DIR = obj/
 
 # Compiler and CFlags
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -I
+CFLAGS = -g -Wall -Wextra -Werror -I
 RM = rm -f
 
 # Source Files
@@ -33,12 +33,11 @@ COMMANDS_DIR =		$(SRC_DIR)moves/push.c \
 								
 PUSH_SWAP_DIR = 	$(SRC_DIR)push_swap/handle_errors.c \
 								$(SRC_DIR)push_swap/ft_split.c \
-								$(SRC_DIR)push_swap/init_a_to_b.c \
 								$(SRC_DIR)push_swap/init_b_to_a.c \
 								$(SRC_DIR)push_swap/push_swap.c \
 							 	$(SRC_DIR)push_swap/stack_init.c \
-								$(SRC_DIR)push_swap/stack_utils.c
-
+								$(SRC_DIR)push_swap/stack_utils.c \
+								$(SRC_DIR)push_swap/utils_sort.c
 # Concatenate all source files
 SRCS = $(COMMANDS_DIR) $(PUSH_SWAP_DIR)
 
@@ -46,26 +45,24 @@ SRCS = $(COMMANDS_DIR) $(PUSH_SWAP_DIR)
 OBJ = $(patsubst $(SRC_DIR)%.c,$(OBJ_DIR)%.o,$(SRCS))
 
 # Build rules
-start:
-	@make all
 
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	@$(CC) $(CFLAGS) $(INC) $(OBJ) -o $(NAME)
+			@$(CC) $(CFLAGS) $(INC) $(OBJ) -o $(NAME)
 
 # Compile object files from source files
 $(OBJ_DIR)%.o: $(SRC_DIR)%.c 
-	@mkdir -p $(@D)
-	@$(CC) $(CFLAGS) $(INC) -c $< -o $@
+			@mkdir -p $(@D)
+			@$(CC) $(CFLAGS) $(INC) -c $< -o $@
 
 clean:
-	@$(RM) -r $(OBJ_DIR)
+			@$(RM) -r $(OBJ_DIR)
 
 fclean: clean
-	@$(RM) $(NAME)
+			@$(RM) $(NAME)
 
-re: fclean all
+re: 	fclean all
 
 # Phony targets represent actions not files
-.PHONY: start all clean fclean re
+.PHONY: all clean fclean re

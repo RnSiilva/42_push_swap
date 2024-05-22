@@ -1,16 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_b_to_a.c                                      :+:      :+:    :+:   */
+/*   init_a_to_b.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: resilva <resilva@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/05 00:45:27 by resilva           #+#    #+#             */
-/*   Updated: 2023/12/05 23:42:27 by resilva          ###   ########.fr       */
+/*   Created: 2023/12/01 01:31:53 by resilva           #+#    #+#             */
+/*   Updated: 2023/12/13 23:27:59 by resilva          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/push_swap.h"
+
+static void	cost_analysis(t_stack_node *a, t_stack_node *b)
+{
+	int	len_a;
+	int	len_b;
+
+	len_a = stack_len(a);
+	len_b = stack_len(b);
+	while (b)
+	{
+		b->push_cost = b->index;
+		if (!(b->above_median))
+			b->push_cost = len_b - b->index;
+		if (b->target_node->above_median)
+			b->push_cost += b->target_node->index;
+		else
+			b->push_cost += len_a - b->target_node->index;
+		b = b->next;
+	}
+}
 
 static void	set_target_b(t_stack_node *a, t_stack_node *b)
 {
@@ -39,9 +59,31 @@ static void	set_target_b(t_stack_node *a, t_stack_node *b)
 	}
 }
 
+void	current_index(t_stack_node *stack)
+{
+	int	i;
+	int	median;
+
+	i = 0;
+	if (!stack)
+		return ;
+	median = stack_len(stack) / 2;
+	while (stack)
+	{
+		stack->index = i;
+		if (i <= median)
+			stack->above_median = true;
+		else
+			stack->above_median = false;
+		stack = stack->next;
+		i++;
+	}
+}
+
 void	init_nodes_b(t_stack_node *a, t_stack_node *b)
 {
 	current_index(a);
 	current_index(b);
 	set_target_b(a, b);
+	cost_analysis(a, b);
 }

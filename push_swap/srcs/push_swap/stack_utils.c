@@ -6,7 +6,7 @@
 /*   By: resilva <resilva@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 22:18:28 by resilva           #+#    #+#             */
-/*   Updated: 2023/12/06 03:44:01 by resilva          ###   ########.fr       */
+/*   Updated: 2023/12/07 18:47:02 by resilva          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ t_stack_node	*find_cheapest(t_stack_node *stack)
 {
 	t_stack_node	*cheapest_node;
 	long			cheapest_cost;
-	
+
 	if (!stack)
 		return (NULL);
 	cheapest_node = NULL;

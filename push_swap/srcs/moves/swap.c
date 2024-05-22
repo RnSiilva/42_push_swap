@@ -6,7 +6,7 @@
 /*   By: resilva <resilva@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 01:03:21 by resilva           #+#    #+#             */
-/*   Updated: 2023/12/06 02:13:41 by resilva          ###   ########.fr       */
+/*   Updated: 2023/12/09 21:36:32 by resilva          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static void	swap(t_stack_node **stack)
 	int	len;
 
 	len = stack_len(*stack);
-	if (NULL == *stack || NULL == stack || 1 == len)
+	if (*stack == NULL || stack == NULL || len == 1)
 		return ;
 	*stack = (*stack)->next;
 	(*stack)->prev->prev = *stack;

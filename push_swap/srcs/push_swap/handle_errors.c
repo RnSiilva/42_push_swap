@@ -6,7 +6,7 @@
 /*   By: resilva <resilva@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 03:06:52 by resilva           #+#    #+#             */
-/*   Updated: 2023/12/06 01:03:27 by resilva          ###   ########.fr       */
+/*   Updated: 2023/12/13 23:20:56 by resilva          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,11 +52,26 @@ void	free_stack(t_stack_node **stack)
 		free(current);
 		current = tmp;
 	}
+	free(current);
 	*stack = NULL;
 }
 
-void	free_errors(t_stack_node **a)
+void	free_av(char **av)
 {
+	int	i;
+
+	if (!av || !(*av))
+		return ;
+	i = -1;
+	while (av[i])
+		free(av[i++]);
+	free(av - 1);
+}
+
+void	free_errors(t_stack_node **a, char **av, int ac)
+{
+	if (ac == 2 && av[1])
+		free_av(av);
 	free_stack(a);
 	write(2, "Error\n", 6);
 	exit(1);

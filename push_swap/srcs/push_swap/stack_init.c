@@ -6,7 +6,7 @@
 /*   By: resilva <resilva@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 20:38:07 by resilva           #+#    #+#             */
-/*   Updated: 2023/12/06 03:27:52 by resilva          ###   ########.fr       */
+/*   Updated: 2023/12/13 23:26:26 by resilva          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ static void	append_node(t_stack_node **stack, int n)
 		return ;
 	node->next = NULL;
 	node->nbr = n;
+	node->final_index = 0;
 	if (*stack == NULL)
 	{
 		*stack = node;
@@ -72,7 +73,7 @@ static long	ft_atol(char *str)
 	return (n * sign);
 }
 
-void	init_stack_a(t_stack_node **a, char **av)
+void	init_stack_a(t_stack_node **a, char **av, int ac)
 {
 	long	n;
 	int		i;
@@ -81,13 +82,18 @@ void	init_stack_a(t_stack_node **a, char **av)
 	while (av[i])
 	{
 		if (error_syntax(av[i]))
-			free_errors(a);
+			free_errors(a, av, ac);
 		n = ft_atol(av[i]);
 		if (n > INT_MAX || n < INT_MIN)
-			free_errors(a);
-		if (error_duplicate(*a, (int)n))
-			free_errors(a);
+			free_errors(a, av, ac);
+		if (error_duplicate(*a, n))
+			free_errors(a, av, ac);
 		append_node(a, (int)n);
 		i++;
+	}
+	if (ac == 2 && av[1])
+	{
+		free_av(av);
+		av = NULL;
 	}
 }

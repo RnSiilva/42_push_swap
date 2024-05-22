@@ -6,7 +6,7 @@
 /*   By: resilva <resilva@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 19:06:06 by resilva           #+#    #+#             */
-/*   Updated: 2023/12/06 00:38:45 by resilva          ###   ########.fr       */
+/*   Updated: 2023/12/08 19:05:35 by resilva          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,8 +67,8 @@ char	**ft_split(char *s, char c)
 	i = 0;
 	len = count_subs(s, c);
 	if (!len)
-		exit(1);
-	result = malloc(sizeof(char) * len + 2);
+		return (NULL);
+	result = malloc(sizeof(char *) * (len + 2));
 	if (!result)
 		return (NULL);
 	while (len-- >= 0)
