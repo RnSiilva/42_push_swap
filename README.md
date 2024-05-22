@@ -38,10 +38,9 @@
 
 ## 📑 Index
 
-* [**📁 includes:**](includes/) contains the program's headers.
-* [**📁 libft:**](libft/) contains the source code of the `libft` library, which is used in the program.
-* [**📁 srcs:**](srcs/) contains the source code of the program.
-* [**Makefile**](Makefile) - contains instructions for compiling the program and testing it.
+* [**📁 includes:**](push_swap/inc/) contains the program's headers.
+* [**📁 srcs:**](push_swap/srcs/) contains the source code of the program.
+* [**Makefile**](push_swap/Makefile) - contains instructions for compiling the program and testing it.
 
 _Note: only mandatory requirements of the project's subject are covered._
 
@@ -71,13 +70,22 @@ $ ./push_swap $ARG
 
 where `$ARG` is a space separated list of integers, e.g. `ARG="1 5 2 4 3"`
 
+**3. Example**
+```shell
+$ ARG="1 5 2 4 3"; ./push_swap $ARG
+```
+
 ## 📋 Testing
 
-_(to be written)_
+You can use this third party tester to fully test the project:
+- Push-Swap-Tester(gemartin99): https://github.com/gemartin99/Push-Swap-Tester
+- Push_swap_visualizer(o-reo): https://github.com/o-reo/push_swap_visualizer
+
 
 ## 📌 Useful Links
 
-* [[Medium] Push_Swap: The least amount of moves with two stacks](https://medium.com/@jamierobertdawson/push-swap-the-least-amount-of-moves-with-two-stacks-d1e76a71789a)
+* [[YOUTUBE] push_swap TUTORIAL!](https://www.youtube.com/watch?v=wRvipSG4Mmk)
+* [[MEDIUM] Turk method](https://medium.com/@ayogun/push-swap-c1f5d2d41e97)
 
 ## 🤓 Study Summary
 
