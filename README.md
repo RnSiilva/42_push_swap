@@ -75,9 +75,13 @@ where `$ARG` is a space separated list of integers, e.g. `ARG="1 5 2 4 3"`
 $ ARG="1 5 2 4 3"; ./push_swap $ARG
 ```
 
+---
+## Grade: 100 / 100
+
 ## 📋 Testing
 
 You can use this third party tester to fully test the project:
+
 - Push-Swap-Tester (gemartin99): https://github.com/gemartin99/Push-Swap-Tester
 - Push_swap_visualizer (o-reo): https://github.com/o-reo/push_swap_visualizer
 
